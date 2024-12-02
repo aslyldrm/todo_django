@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+{% load static  %}
+
+{% block title %}
+<title>About Us</title>
+{% endblock title %}
+
+{% block content %}
+<div class ="container">
+    <div class="container text-center">
+        <div class="row">
+          
+          <div class="col-6 mt-4">
+           <h2> Welcome to Todo—your go-to app for managing tasks and boosting productivity!</h2>
+           <br/>
+
+           <p><u>Our mission is simple:</u> to help you stay organized and accomplish your goals effortlessly. 
+            Whether it’s a busy workday, personal projects, or everyday errands, Todo gives you the tools to plan, prioritize, and succeed.
+            With an intuitive interface, smart reminders, and collaborative features, Todo adapts to your needs—keeping you focused and stress-free.
+
+            </p>
+                     <h5> Join thousands of users who have simplified their lives with Todo. Let's make every day productive together!</h5>
+          </div>
+
+          <div class="col mt-4">
+            <img src="{% static 'images/about_us_page_picture.jpg' %}" class="img-fluid shadow" alt="About Us Page Image">
+          </div>
+          
+        </div>
+      </div>
+    
+</div>
+{% endblock content %}
+

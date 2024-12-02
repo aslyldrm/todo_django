@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+<title>Todo Task Analytics </title>
+{% endblock title %}
+
+{% block content %}
+<div class ="container">
+    <h2 class="text-center mt-4">Task Completion Statistics</h2>
+    <div class="row"> 
+    <div class="col mt-4">
+    </div>
+    <div class=" col mt-4">
+      <canvas id="myChart" width="300" height="300"></canvas>
+      </div>
+      <div class="col mt-4">
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+  // Parse the chart_data to JSON
+  var chartData = JSON.parse('{{ chart_data|escapejs }}');
+  var config = {
+    type: 'pie',
+    data: {
+        labels: chartData.labels,
+        datasets: [{
+            data: chartData.data,
+            backgroundColor: ['red', 'blue'],
+            label: 'Label'
+        }]
+    },
+    options: {
+        responsive: true
+    }
+  };
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, config);
+</script>
+{% endblock content %}

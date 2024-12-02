@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Todolist Manager</title>
+{% endblock title %}
+{% block content %}
+<div class ="container" style="margin-top: 20px;">
+  {% if messages %}
+  <div id="message-container">
+      {% for message in messages %}
+          <div class="alert alert-success">
+              {{ message }}
+          </div>
+      {% endfor %}
+  </div>
+  {% endif %}
+
+  <table class="table  table-bordered  ">
+    <thead class ="table-dark">
+      <tr class='row'>
+        <th class="col-7" >Task</th>
+        <th class="col-3" >Done</th>
+        <th class="col-1" >Edit</th>
+        <th class="col-1" >Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+   {% if all_tasks %}
+             {% for obj in all_tasks%}
+                  {% if obj.done %}
+                      <tr class='table-success row '>
+                      <td class="col-7"><del>{{ obj.task }}</del></th>
+                      <td class="col-3"><a href="{% url 'pending_task' obj.id %}" class="btn "> Completed 😊 </td>
+                      <td class="col-1"> <a href="{% url 'edit_task' obj.id %}" class="btn btn-light"> Edit</td>
+                      <td class="col-1"> <a href="{% url 'delete_task' obj.id %}" class="btn btn-light"> Delete</td>
+                      </tr>
+                  {% else %}
+                      <tr class='row'>
+                      <td class="col-7">{{ obj.task }}</th>
+                      <td class="col-3"><a href="{% url 'complete_task' obj.id %}" class="btn btn-outline-primary"> Not Completed </td>
+                      <td class="col-1"> <a href="{% url 'edit_task' obj.id %}" class="btn btn-light"> Edit</td>
+                      <td class="col-1"><a href="{% url 'delete_task' obj.id %}" class="btn btn-light"> Delete</td>
+                      </tr>
+                  {%  endif %}
+            {% endfor %}
+   {% endif %}
+
+    </tbody>
+  </table>
+ </br>
+ <form method="POST" class="row">
+  {% csrf_token %}
+  <label class="col-lg-4"> </label>
+  <div class="col-lg-6">
+    <input type="text" class="form-control" name="task" placeholder="New Task">
+  </div>
+  <div class="col-lg-2">
+    <button type="submit" class="btn btn-primary">Add Task</button>
+  </div>
+</form>
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+
+<nav aria-label="...">
+  <ul class="pagination justify-content-end" >
+    <li class="page-item "><a class="page-link" href='?page=1'>Previous</a> </li>
+    {% if all_tasks.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ all_tasks.previous_page_number}}">{{ all_tasks.previous_page_number}}</a></li>
+    {% endif%}
+    <li class="page-item active" aria-current="page"> <a class="page-link" href="?page={{ all_tasks.number}}">{{ all_tasks.number}}</a> </li>
+    {% if all_tasks.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ all_tasks.next_page_number}}">{{ all_tasks.next_page_number}}</a></li> 
+    {% endif%}
+   
+    <li class="page-item"><a class="page-link" href="?page={{ all_tasks.paginator.num_pages}}">Next</a> </li>
+  </ul>
+</nav>
+
+
+
+</div>
+
+{% endblock content %}
