@@ -9,6 +9,15 @@ A simple **To-Do** application built using Django to manage tasks and display an
 - **Delete Tasks**: Remove tasks that are no longer needed.
 - **Analytics**: Visual representation of the number of finished and unfinished tasks through a pie chart.
 
+  
+## Project Pictures
+![To-Do App Screenshot](project_pictures/about_us_page.png)
+![To-Do App Screenshot](project_pictures/home_page.png)
+![To-Do App Screenshot](project_pictures/login_page.png)
+![To-Do App Screenshot](project_pictures/register_page.png)
+![To-Do App Screenshot](project_pictures/main_page.png)
+![To-Do App Screenshot](project_pictures/task_analysis_page.png)
+
 ## Tech Stack
 
 - **Frontend**: HTML, CSS, JavaScript
